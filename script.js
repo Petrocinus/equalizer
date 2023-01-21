@@ -4,7 +4,7 @@ logo = document.getElementById("logo").style;
 
 audio = document.getElementById("audio");
 
-window.onclick = function(){
+audio.onclick = function(){
     if(!context){
         preparation();
     }
