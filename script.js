@@ -4,7 +4,7 @@ logo = document.getElementById("logo").style;
 
 audio = document.getElementById("audio");
 
-audio.onclick = function(){
+window.onclick = function(){
     if(!context){
         preparation();
     }
@@ -14,7 +14,7 @@ audio.onclick = function(){
     }else{
         audio.pause();
     }
-};
+}
 
 function preparation(){
     context = new AudioContext();
