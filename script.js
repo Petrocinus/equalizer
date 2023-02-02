@@ -1,8 +1,12 @@
-var audio, context, analyser, src, array, logo;
+var audio, context, analyser,myElements, src, array, logo, num;
+
+num = 32;
 
 logo = document.getElementById("logo").style;
 
 audio = document.getElementById("audio");
+
+myElements = document.getElementsByClassName('logo');
 
 window.onclick = function(){
     if(!context){
@@ -19,7 +23,7 @@ window.onclick = function(){
 function preparation(){
     context = new AudioContext();
     analyser = context.createAnalyser();
-    src = context.createMediaElementSource(audio);
+    src = context.createMediaStreamSource(stream);
     src.connect(analyser);
     analyser.connect(context.destination);
     loop();
@@ -31,7 +35,9 @@ function loop(){
     }
     array = new Uint8Array(analyser.frequencyBinCount);
     analyser.getByteFrequencyData(array);
-
-    logo.minHeight = (array[40])+"px";
-    logo.width =  (array[40])+"px";
+    for(var i = 0 ; i < num ; i++){
+        height = array[i+num];
+        myElements[i].style.minHeight = height+'px';
+        myElements[i].style.opacity = 0.008*height;
+    }
 }
