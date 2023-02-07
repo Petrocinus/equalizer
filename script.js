@@ -37,7 +37,7 @@ function loop(){
     analyser.getByteFrequencyData(array);
     for(var i = 0 ; i < num ; i++){
         height = array[i+num];
-        myElements[i].style.minHeight = height+'px';
-        myElements[i].style.opacity = 0.008*height;
+        myElements[i].minHeight = height+'px';
+        myElements[i].opacity = 0.008*height;
     }
 }
