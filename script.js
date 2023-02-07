@@ -1,12 +1,10 @@
-var audio, context, analyser,myElements, src, array, logo, num;
+var audio, context, analyser,myElements, src, array, logo, num, array;
 
 num = 32;
 
-logo = document.getElementById("logo").style;
+array = new Uint8Array(num*2);
 
 audio = document.getElementById("audio");
-
-myElements = document.getElementsByClassName('logo');
 
 window.onclick = function(){
     if(!context){
@@ -26,6 +24,14 @@ function preparation(){
     src = context.createMediaStreamSource(stream);
     src.connect(analyser);
     analyser.connect(context.destination);
+    for(var i = 0 ; i < num ; i++){
+        logo = document.createElement('div');
+        logo.className = 'logo';
+        logo.style.background = 'red';
+        logo.style.minWidth = width+'px';
+        body.appendChild(logo);
+    }
+    myElements = document.getElementsByClassName('logo');
     loop();
 }
 
@@ -33,11 +39,10 @@ function loop(){
     if(!audio.paused){
         window.requestAnimationFrame(loop);
     }
-    array = new Uint8Array(analyser.frequencyBinCount);
     analyser.getByteFrequencyData(array);
     for(var i = 0 ; i < num ; i++){
         height = array[i+num];
-        myElements[i].minHeight = height+'px';
-        myElements[i].opacity = 0.008*height;
+        myElements[i].style.minHeight = height+'px';
+        myElements[i].style.opacity = 0.008*height;
     }
 }
