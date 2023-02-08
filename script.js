@@ -36,4 +36,5 @@ function loop(){
 
     logo.minHeight = (array[40])+"px";
     logo.width =  (array[40])+"px";
+    logo.opacity = 0.008*array[40];
 }
