@@ -4,6 +4,8 @@ logo = document.getElementById("logo").style;
 
 audio = document.getElementById("audio");
 
+audio.crossOrigin = "anonymous";
+
 window.onclick = function(){
     if(!context){
         preparation();
