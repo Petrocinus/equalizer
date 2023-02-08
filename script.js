@@ -21,7 +21,7 @@ window.onclick = function(){
 function preparation(){
     context = new AudioContext();
     analyser = context.createAnalyser();
-    src = context.createMediaElementSource(audio);
+    src = context.createMediaStreamSource(audio);
     src.connect(analyser);
     analyser.connect(context.destination);
     loop();
